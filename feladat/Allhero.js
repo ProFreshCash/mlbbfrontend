@@ -68,7 +68,7 @@ export default class PizzaTranslator extends Component {
 
 
         <Text style={{color:"black",fontSize:24,textAlign:"center",marginTop:5,marginBottom:5}}   >Hős neve: {item.hos_nev}</Text>
-                  
+        <Text style={{color:"black",fontSize:24,textAlign:"center",marginTop:5,marginBottom:5}}   >Hős szerepköre: {item.role}</Text>
          </View>
 
         <View style={{flex: 1,marginLeft: 5}}>
