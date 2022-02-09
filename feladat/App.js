@@ -4,7 +4,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import Tankok from "./Tankok";
 import Kalkulator from "./Kalkulator";
-import Itempicker from "./Teszt";
+import Items from "./Felszerelesek";
 import Harcosok from "./Fighters";
 import Osszeshos from "./Allhero";
 
@@ -22,7 +22,7 @@ function TankScreen({ navigation }) {
 
 function ItemsScreen({ navigation }) {
   return (
-    <Itempicker/>
+    <Items/>
   );
 }
 
@@ -47,8 +47,8 @@ export default function App() {
         <Drawer.Screen name="Összes hős" component={AllHeroScreen} />
         <Drawer.Screen name="Tankok" component={TankScreen} />
         <Drawer.Screen name="Harcosok" component={FightersScreen} />
-        <Drawer.Screen name="Felszerelés" component={ItemsScreen} />
-        <Drawer.Screen name="Felszerelés kalkulátor" component={BuildCalcScreen} />
+        <Drawer.Screen name="Felszerelések" component={ItemsScreen} />
+        <Drawer.Screen name="Felszerelés ár kalkulátor" component={BuildCalcScreen} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
