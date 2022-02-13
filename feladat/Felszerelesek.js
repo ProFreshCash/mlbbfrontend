@@ -10,7 +10,7 @@ export default class PizzaTranslator extends Component {
     this.state ={ isLoading: true, isVisible:false,anyag:[]}
   }
     componentDidMount(){
-      return fetch('http://'+CONFIG.IP+':'+CONFIG.PORT+'/osszesitem')
+      return fetch('http://'+CONFIG.IP+':'+CONFIG.PORT+'/osszestargy')
         .then((response) => response.json())
         .then((responseJson) => {
   
@@ -64,12 +64,19 @@ export default class PizzaTranslator extends Component {
 
           <View style={{paddingBottom: 20, width: 500,}}>
            <View style={{flex: 1, flexDirection: 'row', borderColor: "black", borderWidth: 3, borderRadius: 15, padding: 10, }}>
-        <View style={{flex: 1, width: 400,height: 300, marginLeft: "auto", marginRight: "auto"}} >
+        <View style={{flex: 1, width: 400,minHeight: 300, marginLeft: "auto", marginRight: "auto"}} >
 
 
-        <Text style={{color:"black",fontSize:24,textAlign:"center",marginTop:5,marginBottom:5}}   >Hős neve: {item.hos_nev}</Text>
+        <Text style={{color:"black",fontSize:24,textAlign:"center",marginTop:5,marginBottom:5, textDecorationLine:"underline", fontWeight: "bold"}}   >Tárgy neve: </Text> <Text style={{color:"black",fontSize:24,textAlign:"center",marginTop:5,marginBottom:5,}}>{item.item_nev}</Text>
+
+        <Text style={{color:"black",fontSize:24,textAlign:"center",marginTop:5,marginBottom:5}}   >Tárgy ára: {item.ar}</Text>
+
+        <Text style={{color:"black",fontSize:24,textAlign:"center",marginTop:5,marginBottom:5}}   >Tárgy leírása: {item.leiras}</Text>
+
+        <Text style={{color:"black",fontSize:24,textAlign:"center",marginTop:5,marginBottom:5}}   >Tárgy típusa: {item.item_fajta}</Text>
                   
          </View>
+         
 
         <View style={{flex: 1,marginLeft: 5}}>
         <TouchableOpacity  onPress={() => { this.displayModal(true); this.setState({anyag:item})}}>

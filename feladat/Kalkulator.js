@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Text, TextInput, View, TouchableOpacity,StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
-import DropDownPicker from 'react-native-dropdown-picker'
+import DropDownPicker from 'react-native-dropdown-picker';
+
+const CONFIG = require('./config.js');
 
 export default class PizzaTranslator extends Component {
   constructor(props) {
     super(props);
-    this.state = {text: ''};
+    this.state = {text: '', anyag:[]};
   }
   state = {
     hosszusag: '',
@@ -28,16 +30,36 @@ export default class PizzaTranslator extends Component {
     this.setState({ered: eredmeny})
   }
 
+  componentDidMount(){
+    return fetch('http://'+CONFIG.IP+':'+CONFIG.PORT+'/osszestargy')
+      .then((response) => response.json())
+      .then((responseJson) => {
+
+        this.setState({
+          isLoading: false,
+          dataSource: responseJson,
+          anyag: [],
+        }, function(){
+
+        });
+
+      })
+      .catch((error) =>{
+        console.error(error);
+      });
+
+}
+
   render() {
     return (
       <View style={{padding: 20, marginLeft:"auto", marginRight: "auto", borderRadius: 15, borderColor: "blue", borderWidth: 5, marginTop: 20, minWidth: 450, minHeight: 450}}>
-        <Text style={{fontSize: 24, fontWeight: "bold", textAlign: "center", marginBottom: 20, textDecorationLine:"underline", textTransform:"uppercase"}}>Betonalap mennyiségének kiszámítása</Text>
+        <Text style={{fontSize: 24, fontWeight: "bold", textAlign: "center", marginBottom: 20, textDecorationLine:"underline", textTransform:"uppercase"}}>Felszerelés költség kiszámítása:</Text>
         
         <View style={{minHeight: 200, minWidth: 400, marginLeft:"auto", marginRight: "auto"}}>
         
         <View style={{flex: 1, flexDirection: "row",}}>
         <Text style={{padding: 10,marginBottom: 5 ,  fontSize: 25}}>
-          Magasság (m): 
+          Felszerelés fajtája: 
         </Text>
         <TextInput
       style={{ height: 40, borderColor: 'black', borderWidth: 3, borderRadius: 25, width: 200, marginRight: "auto", textAlign:"center", fontSize: 20}}
@@ -48,7 +70,7 @@ export default class PizzaTranslator extends Component {
         
         <View style={{flex: 1, flexDirection: "row",}}>
         <Text style={{padding: 10, marginBottom: 5 , fontSize: 25}}>
-          Szélesség (m): 
+          Felszerelés neve: 
         </Text>
         <TextInput
       style={{ height: 40, borderColor: 'black', borderWidth: 3, borderRadius: 25, width: 200, marginRight: "auto", textAlign:"center", fontSize: 20}}
